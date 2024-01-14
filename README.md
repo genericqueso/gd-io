@@ -91,7 +91,7 @@ Gets a particular color channel from a level based on an ID. If there exists no 
 
 This section provides a series of examples on how to do basic functions with gd-io, written with the current layout and import structure of `main.py` in mind. These examples also demonstrate the functionality of some lesser-known python functions that are generally very useful in operating the library. If you'd like to test them out, the following examples should be pasted in where it says "Put your script here!" in `main.py`.
 
-#### Creating an object
+### Creating an object
 
 ```
 obj = gdObject({
@@ -103,7 +103,7 @@ obj = gdObject({
 
 This code example creates a `gdObject` that represents a default block placed at (45, 45). This has not been added to the level; it merely exists in code.
 
-#### Adding an object to a level
+### Adding an object to a level
 
 ```
 obj = gdObject({
@@ -116,7 +116,7 @@ lvl.objs.append(obj)
 
 This code example creates a `gdObject` that represents a default block placed at (45, 45), and then adds this block to the level.
 
-#### Creating a color
+### Creating a color
 
 ```
 col = gdColor({
@@ -129,7 +129,7 @@ col = gdColor({
 
 This code example creates a `gdColor` that represents color channel 1 with the color set to red. This has not been added to the level; it merely exists in code.
 
-#### Adding a color to a level
+### Adding a color to a level
 
 ```
 col = gdColor({
@@ -143,7 +143,7 @@ lvl.cols.append(obj)
 
 This code example creates a `gdColor` that represents color channel 1 with the color set to red, and then adds this color to the level.
 
-#### Creating an object with many attributes
+### Creating an object with many attributes
 
 ```
 obj = gdObject({
@@ -159,7 +159,7 @@ obj = gdObject({
 This code example creates a `gdObject` that represents a block with two colors placed at (45, 90), where the primary color is channel 1 and the secondary color is channel 2. The block also has groups 2 & 4. Please note that attributes may be ordered within the dictionary in any order - here we have the 'y' attribute below the groups attribute.
 Please see `attributeData.py` for information on existing attributes and their associated data types.
 
-#### Updating an object's attribute
+### Updating an object's attribute
 
 ```
 obj = gdObject({
@@ -172,7 +172,7 @@ setattr(obj, "y", 90.0)
 
 This code example creates a `gdObject` that represents a default block placed at (45, 45), and then sets the 'y' attribute of the object to 90.0.
 
-#### Adding an attribute to an object
+### Adding an attribute to an object
 
 ```
 obj = gdObject({
@@ -185,7 +185,7 @@ setattr(obj, "color", 5)
 
 This code example creates a `gdObject` that represents a default block placed at (45, 45), and then adds the 'color' attribute to the object with a value of 5.
 
-#### Reading an attribute of an object
+### Reading an attribute of an object
 
 ```
 obj = gdObject({
@@ -206,7 +206,7 @@ Because the object has an 'x' attribute, the value of the 'x' attribute is print
 
 Generally when using `getattr()`, you'll want to have a default value (it'll save yourself a lot of headaches).
 
-#### Removing an attribute of an object
+### Removing an attribute of an object
 
 ```
 obj = gdObject({

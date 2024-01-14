@@ -8,11 +8,13 @@ As always with these GD-related coding things I'm indebted to the work of [Spu7n
 If you'd like to get started, check out the documentation and examples below. Alternatively if you'd like to get in touch with me about any questions, you can contact me on Discord at __@lcd_seansystem__; I'm generally available to field any questions you might have.
 
 ### Important notes about usage
-- gd-io has been verified for **Geometry Dash version 2.204**, **Python 3.10.0**, and **Windows 10.0.19045 Build 19045**. If you are having any issues, ensure you have these versions at a minimum. It has not been verified for any sort of Mac OS or Linux-based system.
+- gd-io has been verified for **Geometry Dash 2.204**, **Python 3.10.0**, and **Windows 10.0.19045 Build 19045**. If you are having any issues, ensure you have these versions at a minimum. 
+- gd-io has not been verified for any sort of Mac OS or Linux-based system.
 - Reading from and writing to a level can only be done __while the game is closed__. Unfortunately the game does not load a level's information from `CCLocalLevels.dat` anywhere except on game startup, and on game exit it will overwrite your data in `CCLocalLevels.dat` with whatever is in game.
+- There is a known issue with trying to read from an empty level; the game doesn't create the headers for a level that is empty. If you want to populate an empty level please include a singular block somewhere for your own sake.
 - This version of gd-io will only read and write to your top-most level; make sure you move your level to the top using the up-arrow on your level editor browsing screen to access the particular level you would like to read or write to.
-- __Please use gd-io at your own discretion.__ I've personally encountered zero issues with data corruption thus far in my extensive use of this library for myself, but I'm also a solo developer on this stuff; there may be issues I haven't caught. I am ultimately not liable for whatever happens on your machine. In other words: **Make backups of everything!**
 - gd-io doesn't interact with RobTop's servers or endpoints in any way. Check out [gd.py](https://pypi.org/project/gd.py/) if you'd like to do that type of stuff.
+- __Please use gd-io at your own discretion.__ I've personally encountered zero issues with data corruption thus far in my extensive use of this library for myself, but I'm also a solo developer on this stuff; there may be issues I haven't caught. I am ultimately not liable for whatever happens on your machine. In other words: **Make backups of everything!**
 
 ---
 
@@ -200,7 +202,9 @@ This code example creates a `gdObject` that represents a default block placed at
 45.0
 no color
 ```
-Because the object has an 'x' attribute, the value of the 'x' attribute is printed. However, because the object does not have a 'color' attribute, the code will instead print out the default value provided by the third argument of the function attemping to pull the value of the 'color' attribute from the object. Generally when using `getattr()`, you want to have a default value (it will save yourself a lot of headaches).
+Because the object has an 'x' attribute, the value of the 'x' attribute is printed. However, because the object does not have a 'color' attribute, the code will instead print out the default value provided by the third argument of the function attemping to pull the value of the 'color' attribute from the object. 
+
+Generally when using `getattr()`, you'll want to have a default value (it'll save yourself a lot of headaches).
 
 #### Removing an attribute of an object
 

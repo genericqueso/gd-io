@@ -69,12 +69,12 @@ def read_leveldata(decrypt_lvlstring=True) -> dict[str, str]:
     return lvldata
 
 
-def write_leveldata(lvlstring: str) -> None:
+def write_leveldata(lvlstring: str, start_game=False) -> None:
     root = ET.ElementTree(ET.fromstring(decrypt_gamesave())).getroot()
     lvldata_index = [node.text for node in root[0][1][3]].index("k4") + 1
     root[0][1][3][lvldata_index].text = encrypt(bytes(lvlstring, "utf-8"))
     encrypt_gamesave(ET.tostring(root, encoding="utf8", method="xml"))
-    subprocess.call(r"cmd /c start steam://run/322170")  # open gd
+    if start_game: subprocess.call(r"cmd /c start steam://run/322170")  # open gd
 
 
 def write_levelstring_to_file(lvldata: dict[str, str]) -> None:

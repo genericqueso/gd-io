@@ -5,13 +5,14 @@ import time
 
 
 def __main__():
+    # The following two lines will extract your level data and transform your topmost level into a gdLevel object (lvl).
     lvldata = lsi.read_leveldata()
     lvl = pl.extract_level(lvldata["k4"])
 
-    # put your script here!
-
-    print(len(lvl.objs))
-    lsi.write_leveldata(pl.compress_level(lvl))
+    # Put your script here!
+    
+    # The following line will compress the gdLevel object and then write it back to your level data.
+    lsi.write_leveldata(pl.compress_level(lvl), False)
 
 
 start = time.time()

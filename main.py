@@ -10,10 +10,9 @@ def __main__():
     lvl = pl.extract_level(lvldata["k4"])
 
     # Put your script here!
-    print(lvl.objs_printable())
     
     # The following line will compress the gdLevel object and then write it back to your level data.
-    # lsi.write_leveldata(pl.compress_level(lvl), False)
+    lsi.write_leveldata(pl.compress_level(lvl), False)
 
 
 start = time.time()

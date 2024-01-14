@@ -26,17 +26,17 @@ There isn't much in this library, so this section will likely be all the documen
 
 Representing a level, which is comprised of objects, color channels, and headers.
 
-- `objs` (list): A list of `gdObject`s.
-- `cols` (list): A list of `gdColor`s.
-- `headers` (str): A string comprising additional information of the level.
+- `objs: list[gdObject]` - A list comprising all objects of the level.
+- `cols: list[gdColor]` - A list comprising all color channels of the level.
+- `headers: str` - A string comprising additional information of the level.
 
 #### `gdObject`
 
 Representing a single Geometry Dash object, which has a series of attributes.
 
-- `ID` (int): The object ID of the object, which tells you what it is (a block, a spike, a trigger, etc).
-- `x` (float): The position of the object along the horizonal axis, with a scale of 30 units = 1 grid space.
-- `y` (float): The position of the object along the vertical axis, with a scale of 30 units = 1 grid space.
+- `ID: int` - The object ID of the object, which tells you what it is (a block, a spike, a trigger, etc).
+- `x: float` - The position of the object along the horizonal axis, with a scale of 30 units = 1 grid space.
+- `y: float` - The position of the object along the vertical axis, with a scale of 30 units = 1 grid space.
 
 All other attributes outside of these 3 are optional for any object; the game will automatically populate objects with default values for necessary attributes if that data is not provided by the user. If you provide an attribute for an object that doesn't use it, the game will generally ignore it - though I haven't tested this extensively; maybe you'll find something weird!
 
@@ -48,12 +48,12 @@ Representing a single Geometry Dash color channel, which has a series of attribu
 
 NOTE: These are for the colors set at the start of the level, NOT for color triggers set during the course of the level (which are nominally objects).
 
-- `ID` (int): The color channel number of the object. Special color channels are generally at 1000 and above.
-- `red` (int): The red value for the color channel.
-- `green` (int): The green value for the color channel.
-- `blue` (int): The blue value for the color channel.
+- `ID: int` - The color channel number of the object. Special color channels are generally at 1000 and above.
+- `red: int` - The red value for the color channel.
+- `green: int` - The green value for the color channel.
+- `blue: int` - The blue value for the color channel.
 
-To reiterate from `gdObject`, all other attributes outside of these 4 are optional for any color channel; the game will automatically populate the channel with default values for necessary attributes if that data is not provided by the user.
+All other attributes outside of these 4 are optional for any color channel; the game will automatically populate the channel with default values for necessary attributes if that data is not provided by the user.
 
 ### Useful class methods
 
@@ -81,7 +81,7 @@ A filter, which is a reference to a method that accepts a gdObject and returns a
 
 - `gdLevel: get_color_channel(self, val: int) -> gdColor`
 
-Gets a particular color channel from a level based on the ID of the color. If color ID is not present, the default white that all channels are initially set to is returned.
+Gets a particular color channel from a level based on an ID. If there exists no color with the specified ID, the method returns the default white that all channels are initially set to.
 
 ---
 
@@ -99,7 +99,7 @@ obj = gdObject({
 })
 ```
 
-This code example creates a gdObject that represents a default block placed at (45, 45). This has not been added to the level; it merely exists in code.
+This code example creates a `gdObject` that represents a default block placed at (45, 45). This has not been added to the level; it merely exists in code.
 
 #### Adding an object to a level
 
@@ -112,7 +112,7 @@ obj = gdObject({
 lvl.objs.append(obj)
 ```
 
-This code example creates a gdObject that represents a default block placed at (45, 45), and then adds this block to the level.
+This code example creates a `gdObject` that represents a default block placed at (45, 45), and then adds this block to the level.
 
 #### Creating a color
 
@@ -125,7 +125,7 @@ col = gdColor({
 })
 ```
 
-This code example creates a gdColor that represents color channel 1 with the color set to red. This has not been added to the level; it merely exists in code.
+This code example creates a `gdColor` that represents color channel 1 with the color set to red. This has not been added to the level; it merely exists in code.
 
 #### Adding a color to a level
 
@@ -139,7 +139,7 @@ col = gdColor({
 lvl.cols.append(obj)
 ```
 
-This code example creates a gdColor that represents color channel 1 with the color set to red, and then adds this color to the level.
+This code example creates a `gdColor` that represents color channel 1 with the color set to red, and then adds this color to the level.
 
 #### Creating an object with many attributes
 
@@ -154,7 +154,7 @@ obj = gdObject({
 })
 ```
 
-This code example creates a gdObject that represents a block with two colors placed at (45, 90), where the primary color is channel 1 and the secondary color is channel 2. The block also has groups 2 & 4. Please note that attributes may be ordered within the dictionary in any order - here we have the 'y' attribute below the groups attribute.
+This code example creates a `gdObject` that represents a block with two colors placed at (45, 90), where the primary color is channel 1 and the secondary color is channel 2. The block also has groups 2 & 4. Please note that attributes may be ordered within the dictionary in any order - here we have the 'y' attribute below the groups attribute.
 Please see `attributeData.py` for information on existing attributes and their associated data types.
 
 #### Updating an object's attribute
@@ -168,7 +168,7 @@ obj = gdObject({
 setattr(obj, "y", 90.0)
 ```
 
-This code example creates a gdObject that represents a default block placed at (45, 45), and then sets the 'y' attribute of the object to 90.0.
+This code example creates a `gdObject` that represents a default block placed at (45, 45), and then sets the 'y' attribute of the object to 90.0.
 
 #### Adding an attribute to an object
 
@@ -181,7 +181,7 @@ obj = gdObject({
 setattr(obj, "color", 5)
 ```
 
-This code example creates a gdObject that represents a default block placed at (45, 45), and then adds the 'color' attribute to the object with a value of 5.
+This code example creates a `gdObject` that represents a default block placed at (45, 45), and then adds the 'color' attribute to the object with a value of 5.
 
 #### Reading an attribute of an object
 
@@ -195,7 +195,7 @@ print(getattr(obj, "x", "no x"))
 print(getattr(obj, "color", "no color"))
 ```
 
-This code example creates a gdObject that represents a default block placed at (45, 45), and then attempts to print out the 'x' & 'color' attributes, respectively. In this scenario, the output will look like the following:
+This code example creates a `gdObject` that represents a default block placed at (45, 45), and then attempts to print out the 'x' & 'color' attributes, respectively. In this scenario, the output will look like the following:
 ```
 45.0
 no color
@@ -214,4 +214,4 @@ obj = gdObject({
 delattr(obj, "color")
 ```
 
-This code example creates a gdObject that represents a default block placed at (45, 45) with a primary color of channel 5, and then removes the color attribute from the object. Note that, in general, if an object requires that attribute, doing this operation is equivalent to resetting the value to its default.
+This code example creates a gdObject that represents a default block placed at (45, 45) with a primary color of channel 5, and then removes the color attribute from the object. Note that, in general, if an object requires that attribute in-game, completing this operation is equivalent to resetting the value of the attribute to its default.

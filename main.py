@@ -3,6 +3,7 @@ from processLevelData import gdObject, gdColor, gdLevel
 import processLevelData as pl
 import time
 
+
 def __main__():
     lvldata = lsi.read_leveldata()
     lvl = pl.extract_level(lvldata["k4"])

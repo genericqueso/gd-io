@@ -1,5 +1,5 @@
 import base64 as b64
-import objectAttributeTransformation as attr_delta
+import gdio.objectAttributeTransformation as attr_delta
 
 # representing a singular attribute of a GD object (with designated type restrictions)
 class gdAttribute:

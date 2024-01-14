@@ -1,7 +1,7 @@
 from typing import Callable, Any
 import typing, types
 import re
-from attributeData import obj_attr_map, col_attr_map, special_col_map, obj_attr_transform, col_attr_transform
+from gdio.attributeData import obj_attr_map, col_attr_map, special_col_map, obj_attr_transform, col_attr_transform
 
 
 # representing an object in GD

@@ -1,11 +1,11 @@
-# gd-io, by lcd_seansystem (frequently known as gecko)
+# gd-io, by lcd_seansystem
 *Alternative title: [gd.py](https://pypi.org/project/gd.py/) (Taylor's Version)*
 
-This library is my version of the local-level I/O functionality of some of the gd-python libraries I've seen floating around the net, a lot of which I've had my own major issues with. This was developed mostly out of necessity during the creation of my level [How to Disappear](https://www.youtube.com/watch?v=tJGxaICiD_A), in order to expedite and automate the process of otherwise tedious tasks. The aim is to bring scripting capabilities to users who aren't necessarily familiar with the ins and outs of Python at a technical level but who are capable enough to do basic programming in the language, to help out people who want the same sort of extra power over the editor as I did with as little overhead as possible. I wasn't initially going to put this code out, out of fear of the release of 2.2 breaking the library entirely, but my own recent testing has revealed that everything seems to be operational; making this code open-source and available to as many people as possible felt like something worth doing in that case.
-
-As always with these GD-related coding things I'm indebted to the work of [Spu7nix](https://www.youtube.com/@Spu7Nix), who developed an early version of `levelStringImporter.py` a long time ago (as early as 2019!) that I've since rewritten and cleaned up.
+This library is my version of the local-level I/O functionality of some of the gd-python libraries I've seen floating around the net, a lot of which I've had my own major issues with. This was developed mostly out of necessity during the creation of my level [How to Disappear](https://www.youtube.com/watch?v=tJGxaICiD_A), in order to expedite and automate the process of otherwise tedious tasks. The aim is to bring scripting capabilities to users who aren't necessarily familiar with the ins and outs of Python at a technical level but who are capable enough to do basic programming in the language, to help out people who want the same sort of extra power over the editor as I did with as little overhead as possible. I wasn't initially going to put this code out, out of fear of the release of 2.2 breaking the library entirely, but my own recent testing has revealed that everything seems to be operational; making this code open-source and available to as many people as possible felt like something worth doing in that case. As always with these GD-related coding things I'm indebted to the work of [Spu7nix](https://www.youtube.com/@Spu7Nix), who developed an early version of `levelStringImporter.py` a long time ago (as early as 2019!) that I've since rewritten and cleaned up.
 
 If you'd like to get started, check out the documentation and examples below. Alternatively if you'd like to get in touch with me about any questions, you can contact me on Discord at __@lcd_seansystem__; I'm generally available to field any questions you might have.
+
+Major disclaimer: __Please use gd-io at your own discretion.__ I've personally encountered zero issues with data corruption thus far in my extensive use of this library for myself, but I'm also a solo developer on this stuff; there may be issues I haven't caught. I am ultimately not liable for whatever happens on your machine. In other words: **Make backups of everything!**
 
 ### Important notes about usage
 - gd-io has been verified for **Geometry Dash 2.204**, **Python 3.10.0**, and **Windows 10.0.19045 Build 19045**. If you are having any issues, ensure you have these versions at a minimum. 
@@ -14,7 +14,6 @@ If you'd like to get started, check out the documentation and examples below. Al
 - There is a known issue with trying to read from an empty level; the game doesn't create the headers for a level that is empty. If you want to populate an empty level please include a singular block somewhere for your own sake.
 - This version of gd-io will only read and write to your top-most level; make sure you move your level to the top using the up-arrow on your level editor browsing screen to access the particular level you would like to read or write to.
 - gd-io doesn't interact with RobTop's servers or endpoints in any way. Check out [gd.py](https://pypi.org/project/gd.py/) if you'd like to do that type of stuff.
-- __Please use gd-io at your own discretion.__ I've personally encountered zero issues with data corruption thus far in my extensive use of this library for myself, but I'm also a solo developer on this stuff; there may be issues I haven't caught. I am ultimately not liable for whatever happens on your machine. In other words: **Make backups of everything!**
 
 ---
 
@@ -94,11 +93,11 @@ This section provides a series of examples on how to do basic functions with gd-
 ### Creating an object
 
 ```
-obj = gdObject({
-    "ID": 1,
-    "x": 45.0,
-    "y": 45.0
-})
+    obj = gdObject({
+        "ID": 1,
+        "x": 45.0,
+        "y": 45.0
+    })
 ```
 
 This code example creates a `gdObject` that represents a default block placed at (45, 45). This has not been added to the level; it merely exists in code.
@@ -106,12 +105,12 @@ This code example creates a `gdObject` that represents a default block placed at
 ### Adding an object to a level
 
 ```
-obj = gdObject({
-    "ID": 1,
-    "x": 45.0,
-    "y": 45.0
-})
-lvl.objs.append(obj)
+    obj = gdObject({
+        "ID": 1,
+        "x": 45.0,
+        "y": 45.0
+    })
+    lvl.objs.append(obj)
 ```
 
 This code example creates a `gdObject` that represents a default block placed at (45, 45), and then adds this block to the level.
@@ -119,12 +118,12 @@ This code example creates a `gdObject` that represents a default block placed at
 ### Creating a color
 
 ```
-col = gdColor({
-    "ID": 1,
-    "red": 255,
-    "green": 0,
-    "blue": 255
-})
+    col = gdColor({
+        "ID": 1,
+        "red": 255,
+        "green": 0,
+        "blue": 255
+    })
 ```
 
 This code example creates a `gdColor` that represents color channel 1 with the color set to red. This has not been added to the level; it merely exists in code.
@@ -132,13 +131,13 @@ This code example creates a `gdColor` that represents color channel 1 with the c
 ### Adding a color to a level
 
 ```
-col = gdColor({
-    "ID": 1,
-    "red": 255,
-    "green": 0,
-    "blue": 255
-})
-lvl.cols.append(obj)
+    col = gdColor({
+        "ID": 1,
+        "red": 255,
+        "green": 0,
+        "blue": 255
+    })
+    lvl.cols.append(col)
 ```
 
 This code example creates a `gdColor` that represents color channel 1 with the color set to red, and then adds this color to the level.
@@ -146,14 +145,14 @@ This code example creates a `gdColor` that represents color channel 1 with the c
 ### Creating an object with many attributes
 
 ```
-obj = gdObject({
-    "ID": 207,
-    "x": 45.0,
-    "groups": [2, 4],
-    "y": 90.0,
-    "color": 1,
-    "color-secondary": 2
-})
+    obj = gdObject({
+        "ID": 207,
+        "x": 45.0,
+        "groups": [2, 4],
+        "y": 90.0,
+        "color": 1,
+        "color-secondary": 2
+    })
 ```
 
 This code example creates a `gdObject` that represents a block with two colors placed at (45, 90), where the primary color is channel 1 and the secondary color is channel 2. The block also has groups 2 & 4. Please note that attributes may be ordered within the dictionary in any order - here we have the 'y' attribute below the groups attribute.
@@ -162,12 +161,12 @@ Please see `attributeData.py` for information on existing attributes and their a
 ### Updating an object's attribute
 
 ```
-obj = gdObject({
-    "ID": 1,
-    "x": 45.0,
-    "y": 45.0
-})
-setattr(obj, "y", 90.0)
+    obj = gdObject({
+        "ID": 1,
+        "x": 45.0,
+        "y": 45.0
+    })
+    setattr(obj, "y", 90.0)
 ```
 
 This code example creates a `gdObject` that represents a default block placed at (45, 45), and then sets the 'y' attribute of the object to 90.0.
@@ -175,12 +174,12 @@ This code example creates a `gdObject` that represents a default block placed at
 ### Adding an attribute to an object
 
 ```
-obj = gdObject({
-    "ID": 1,
-    "x": 45.0,
-    "y": 45.0
-})
-setattr(obj, "color", 5)
+    obj = gdObject({
+        "ID": 1,
+        "x": 45.0,
+        "y": 45.0
+    })
+    setattr(obj, "color", 5)
 ```
 
 This code example creates a `gdObject` that represents a default block placed at (45, 45), and then adds the 'color' attribute to the object with a value of 5.
@@ -188,13 +187,13 @@ This code example creates a `gdObject` that represents a default block placed at
 ### Reading an attribute of an object
 
 ```
-obj = gdObject({
-    "ID": 1,
-    "x": 45.0,
-    "y": 45.0
-})
-print(getattr(obj, "x", "no x"))
-print(getattr(obj, "color", "no color"))
+    obj = gdObject({
+        "ID": 1,
+        "x": 45.0,
+        "y": 45.0
+    })
+    print(getattr(obj, "x", "no x"))
+    print(getattr(obj, "color", "no color"))
 ```
 
 This code example creates a `gdObject` that represents a default block placed at (45, 45), and then attempts to print out the 'x' & 'color' attributes, respectively. In this scenario, the output will look like the following:
@@ -209,13 +208,13 @@ Generally when using `getattr()`, you'll want to have a default value (it'll sav
 ### Removing an attribute of an object
 
 ```
-obj = gdObject({
-    "ID": 1,
-    "x": 45.0,
-    "y": 45.0,
-    "color": 5
-})
-delattr(obj, "color")
+    obj = gdObject({
+        "ID": 1,
+        "x": 45.0,
+        "y": 45.0,
+        "color": 5
+    })
+    delattr(obj, "color")
 ```
 
 This code example creates a gdObject that represents a default block placed at (45, 45) with a primary color of channel 5, and then removes the color attribute from the object. Note that, in general, if an object requires that attribute in-game, completing this operation is equivalent to resetting the value of the attribute to its default.

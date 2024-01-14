@@ -184,7 +184,7 @@ class gdLevel:
         )
 
     # modifying all objects in place
-    def map(self, func: Callable[[gdObject], None], filter: Callable[[gdObject], bool] = None):
+    def map(self, func: Callable[[gdObject], None], filter: Callable[[gdObject], bool] = None) -> None:
         for obj in self.objs:
             if filter == None or (filter != None and filter(obj)):  # if filter is present and object passes filter
                 func(obj)
